@@ -24,14 +24,14 @@ export default function App() {
   const { scrollY } = useScroll();
 
   // --- Travelling Product Animation ---
-  const scrollKeyframes = [0, 450, 900, 1350, 1800, 2250, 2700, 3150, 3600];
+  const scrollKeyframes = [0, 600, 1200, 1800, 2400, 3000, 3600, 4200, 4800];
   const productX = useTransform(scrollY, scrollKeyframes, ["70vw", "30vw", "60vw", "20vw", "50vw", "10vw", "40vw", "20vw", "50vw"]);
-  const productY = useTransform(scrollY, scrollKeyframes, ["30vh", "60vh", "90vh", "120vh", "150vh", "180vh", "210vh", "230vh", "240vh"]);
+  const productY = useTransform(scrollY, scrollKeyframes, ["30vh", "50vh", "70vh", "90vh", "110vh", "130vh", "150vh", "170vh", "190vh"]);
   const productRotate = useTransform(scrollY, scrollKeyframes, [-10, 15, -5, 20, -10, 25, -15, 10, -25]);
-  const productScale = useTransform(scrollY, [0, 3600], [1.2, 1.5]); 
+  const productScale = useTransform(scrollY, [0, 4800], [1.2, 1.5]); 
   
-  const productOpacity = useTransform(scrollY, [3800, 4000], [1, 0]);
-  const productVisibility = useTransform(scrollY, [3800, 4000], ["visible", "hidden"]);
+  const productOpacity = useTransform(scrollY, [4800, 5100], [1, 0]);
+  const productVisibility = useTransform(scrollY, [4800, 5100], ["visible", "hidden"]);
 
   // --- Parallax Masonry Animation ---
   const masonryRef = useRef(null);
@@ -65,7 +65,7 @@ export default function App() {
           <img 
             src="/pen.png" 
             alt="The Student Playbook" 
-            className="w-[180px] md:w-[340px] h-auto drop-shadow-xl"
+            className="w-[240px] md:w-[340px] h-auto drop-shadow-xl"
           />
         </motion.div>
       )}
@@ -164,7 +164,7 @@ export default function App() {
               </div>
             </div>
             
-            <div className="flex justify-center items-center pointer-events-none hidden md:flex">
+            <div className="flex justify-center items-center pointer-events-none md:flex mt-8 md:mt-0">
                 <img 
                   src="/aashi_billboard.png" 
                   alt="Meet Aashi Graphic" 
