@@ -117,9 +117,22 @@ export default function ScrollFrameAnimation({
     const canvas = canvasRef.current;
     if (!canvas) return;
     const ctx = canvas.getContext('2d', { alpha: false }); // Optimize performance by disabling alpha
-    const img = images[frameIndex];
+    let img = images[frameIndex];
+    let actualFrameIndex = frameIndex;
 
-    if (!img || !img.complete) return;
+    if (!img || !img.complete) {
+      // Find the most recent frame before this one that is complete
+      let found = false;
+      for (let i = frameIndex - 1; i >= 0; i--) {
+        if (images[i] && images[i].complete) {
+          img = images[i];
+          actualFrameIndex = i;
+          found = true;
+          break;
+        }
+      }
+      if (!found) return; // If no previous frame is loaded, do nothing
+    }
 
     // Use the exact native resolution of the frames (1280x720)
     // CSS object-fit will seamlessly handle High-DPI and aspect ratio cropping
@@ -144,8 +157,8 @@ export default function ScrollFrameAnimation({
     const cutFrame = 168;
     const transitionLength = 15;
     
-    if (frameIndex >= cutFrame - transitionLength && frameIndex <= cutFrame + transitionLength) {
-      const distance = Math.abs(frameIndex - cutFrame);
+    if (actualFrameIndex >= cutFrame - transitionLength && actualFrameIndex <= cutFrame + transitionLength) {
+      const distance = Math.abs(actualFrameIndex - cutFrame);
       const dipOpacity = 1 - (distance / transitionLength);
       // Ease in-out the opacity curve for a buttery smooth fade
       const easedOpacity = dipOpacity * dipOpacity * (3 - 2 * dipOpacity);
@@ -205,7 +218,7 @@ export default function ScrollFrameAnimation({
     // Overscroll-behavior-y none prevents mobile pull-to-refresh
     <div ref={containerRef} style={{ height: scrollDistance }} className="relative w-full bg-black overscroll-y-none">
       
-      <div className="sticky top-0 w-full h-screen overflow-hidden flex items-center justify-center">
+      <div className="sticky top-0 w-full h-[100dvh] overflow-hidden flex items-center justify-center">
         
         {/* The WebGL/Canvas Surface */}
         <canvas 
