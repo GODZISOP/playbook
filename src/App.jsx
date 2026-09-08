@@ -50,7 +50,7 @@ export default function App() {
       {/* The Travelling Product */}
       {!prefersReducedMotion && isMounted && (
         <motion.div 
-          className="fixed z-20 pointer-events-none hidden md:block"
+          className="fixed z-20 pointer-events-none"
           style={{
             left: productX,
             top: productY,
@@ -65,7 +65,7 @@ export default function App() {
           <img 
             src="/pen.png" 
             alt="The Student Playbook" 
-            className="w-[340px] h-auto drop-shadow-xl"
+            className="w-[180px] md:w-[340px] h-auto drop-shadow-xl"
           />
         </motion.div>
       )}
