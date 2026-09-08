@@ -1,0 +1,66 @@
+@import url('https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600&family=Montserrat:wght@700;800&display=swap');
+
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+@layer base {
+  :root {
+    --bg-blue: #90C2EB;
+    --bg-cream: #FCFAF5;
+    --brand-dark: #4A7BB7;
+    --text-dark: #1E293B;
+    --text-light: #FFFFFF;
+    --hairline: rgba(30, 41, 59, 0.15);
+    
+    /* Keep these for backwards compatibility with the pen component if needed */
+    --ink: #1E293B;
+    --ink-blue: #4A7BB7;
+    --ground: #FCFAF5;
+  }
+
+  body {
+    background-color: var(--bg-cream);
+    color: var(--text-dark);
+    font-family: 'Inter', sans-serif;
+    -webkit-font-smoothing: antialiased;
+    -moz-osx-font-smoothing: grayscale;
+    overflow-x: hidden;
+  }
+
+  h1, h2, h3, h4, h5, h6 {
+    @apply font-serif text-[var(--ink)] tracking-[-0.02em];
+    font-weight: 500;
+  }
+  
+  h1 em, h2 em, h3 em, h4 em, h5 em, h6 em, .accent-italic {
+    @apply font-serif italic text-[var(--ink-blue)] font-medium;
+  }
+
+  * {
+    border-radius: 0 !important;
+  }
+}
+
+@layer utilities {
+  .bg-ground { background-color: var(--ground); }
+  .bg-secondary-ground { background-color: var(--secondary-ground); }
+  .text-ink { color: var(--ink); }
+  .text-secondary-ink { color: var(--secondary-ink); }
+  .text-muted { color: var(--muted); }
+  .text-ink-blue { color: var(--ink-blue); }
+  .border-hairline { border-color: var(--hairline); }
+  
+  .font-serif { font-family: 'Newsreader', serif; }
+  .font-mono { font-family: 'Courier Prime', monospace; }
+  
+  /* Utilities for specific typography requirements */
+  .text-label {
+    @apply font-mono uppercase text-[11px] tracking-[0.1em] text-secondary-ink;
+  }
+  
+  /* Blend mode trick to make the white background of the product image transparent against the off-white paper */
+  .multiply-blend {
+    mix-blend-mode: multiply;
+  }
+}
