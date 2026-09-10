@@ -386,7 +386,7 @@ export default function App() {
           subtitle="Inspiring The Next Generation"
           fit="cover"
           scrollDistance="800vh"
-          priorityLoadCount={15}
+          priorityLoadCount={30}
           overlayOpacity={0}
         />
 
